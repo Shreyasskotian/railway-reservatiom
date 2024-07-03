@@ -1,0 +1,55 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .footer-column {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .footer-column h3 {
+    margin-top: 0;
+  }
+  
+  .footer-column ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 10px;
+  }
+  
+  .logo-column {
+    flex: 2;
+    text-align: center;
+  }
+  
+  .footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .footer-logo .rail {
+    color: red;
+  }
+  
+  .footer-logo .yatri {
+    color: blue;
+  }
+  
+  .footer p {
+    margin: 10px 0;
+  }
+  
+  .social-icons span {
+    margin: 0 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  

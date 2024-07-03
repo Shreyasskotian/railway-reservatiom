@@ -1,0 +1,108 @@
+.home {
+    background: #1E407C url('../images/train-header.jpg') no-repeat center center;
+    background-size: cover 200px;
+    background-size: 1400px 400px;
+    padding: 20px;
+    height: 300px;
+    color: rgb(0, 0, 0);
+  }
+  
+  .breadcrumb {
+    margin-bottom: 20px;
+  }
+  
+  .breadcrumb a {
+    color: white;
+    text-decoration: none;
+    margin-right: 5px;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  .booking-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .booking-header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #1E407C;
+  }
+  
+  .booking-header p {
+    margin: 5px 0 20px;
+    color: gray;
+  }
+  
+  .booking-form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .booking-form input[type="text"] {
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    flex: 1;
+    width: 800px;
+  }
+  
+  .swap-button {
+    padding: 10px;
+    border: none;
+    background: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 40px;
+  }
+  
+  .date-picker {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 10px;
+  }
+  
+  .date-picker p {
+    margin: 5px 0;
+  }
+  
+  .selected-date {
+    font-weight: bold;
+  }
+  
+  .calendar-button {
+    padding: 5px;
+    border: none;
+    background: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .date-options button {
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgb(0, 0, 0);
+    cursor: pointer;
+    width: 80px;
+    color: rgb(235, 235, 235);
+    
+  }
+  
+  .search-button {
+    padding: 10px 20px;
+    border: none;
+    background: #1E407C;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
