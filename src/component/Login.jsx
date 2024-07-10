@@ -9,6 +9,50 @@ export default function Login() {
   const [fullName, setFullName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const clearForm = () => {
+    setEmail('');
+    setPassword('');
+    setFullName('');
+    setConfirmPassword('');
+    setMessage('');
+    setErrors({});
+  };
+
+  const handleSignInSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (!email || !password) {
+        setErrors({ email: 'Email and password are required' });
+        return;
+      }
+      const res = await axios.post('http://localhost:5000/api/auth/signin', { email, password });
+      setMessage(`Welcome back! Token: ${res.data.token}`);
+      clearForm();
+    } catch (err) {
+      setMessage(err.response.data.msg);
+    }
+  };
+
+  const handleSignUpSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (!fullName || !email || !password || !confirmPassword) {
+        setErrors({ fullName: 'Full name is required', email: 'Email is required', password: 'Password is required', confirmPassword: 'Confirm password is required' });
+        return;
+      }
+      if (password !== confirmPassword) {
+        setErrors({ confirmPassword: 'Passwords do not match' });
+        return;
+      }
+      const res = await axios.post('http://localhost:5000/api/auth/signup', { fullName, email, password, confirmPassword });
+      setMessage(`Account created! Token: ${res.data.token}`);
+      clearForm();
+    } catch (err) {
+      setMessage(err.response.data.msg);
+    }
+  };
 
   const handleSignUpClick = () => {
     setIsSignUp(true);
@@ -20,40 +64,12 @@ export default function Login() {
     clearForm();
   };
 
-  const clearForm = () => {
-    setEmail('');
-    setPassword('');
-    setFullName('');
-    setConfirmPassword('');
-    setMessage('');
-  };
-
-  const handleSignInSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('http://localhost:5000/api/auth/signin', { email, password });
-      setMessage(`Welcome back! Token: ${res.data.token}`);
-    } catch (err) {
-      setMessage(err.response.data.msg);
-    }
-  };
-
-  const handleSignUpSubmit = async (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage('Passwords do not match');
-      return;
-    }
-    try {
-      const res = await axios.post('http://localhost:5000/api/auth/signup', { fullName, email, password, confirmPassword });
-      //setMessage(`Account created! Token: ${res.data.token}`);
-    } catch (err) {
-      setMessage(err.response.data.msg);
-    }
-  };
-
   return (
     <div className="login-container">
+      <p className="error-message">{errors.email}</p>
+      <p className="error-message">{errors.fullName}</p>
+      <p className="error-message">{errors.password}</p>
+      <p className="error-message">{errors.confirmPassword}</p>
       <p>{message}</p>
       {!isSignUp ? (
         <div className="login-form">
@@ -101,6 +117,7 @@ export default function Login() {
                 onChange={(e) => setFullName(e.target.value)}
               />
             </div>
+            <p className="error-message">{errors.fullName}</p>
             <div className="form-group">
               <label htmlFor="new-email">Email</label>
               <input
@@ -112,6 +129,7 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+            <p className="error-message">{errors.email}</p>
             <div className="form-group">
               <label htmlFor="new-password">Password</label>
               <input
@@ -123,6 +141,7 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+            <p className="error-message">{errors.password}</p>
             <div className="form-group">
               <label htmlFor="confirm-password">Confirm Password</label>
               <input
@@ -134,6 +153,7 @@ export default function Login() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
+            <p className="error-message">{errors.confirmPassword}</p>
             <button type="submit" className="sign-up-button">Sign Up</button>
           </form>
           <button className="switch-button" onClick={handleSignInClick}>Already have an account? Sign In</button>
