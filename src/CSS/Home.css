@@ -1,9 +1,9 @@
 .home {
-    background: #1E407C url('../images/train-header.jpg') no-repeat center center;
+    background: #1E407C url('../images/train-h.jpg') no-repeat center center;
     background-size: cover 200px;
     background-size: 1400px 400px;
     padding: 20px;
-    height: 300px;
+    height: 430px;
     color: rgb(0, 0, 0);
   }
   

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../CSS/Home.css'; // Import the CSS file
+import AdSlider from './AdSlider'; // Import the new AdSlider component
 
 export default function Home() {
   return (
@@ -10,7 +11,6 @@ export default function Home() {
       <div className="booking-container">
         <div className="booking-header">
           <h1>Train Ticket Booking</h1>
-          
         </div>
         <div className="booking-form">
           <input type="text" placeholder="From Station" />
@@ -29,6 +29,7 @@ export default function Home() {
           <button className="search-button">Search Trains</button>
         </div>
       </div>
+      <AdSlider /> {/* Include the AdSlider component here */}
     </div>
   );
 }
