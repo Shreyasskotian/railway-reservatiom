@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import '../CSS/Login.css'; 
+import '../CSS/Login.css';
 
 export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -20,38 +19,39 @@ export default function Login() {
     setErrors({});
   };
 
-  const handleSignInSubmit = async (e) => {
+  const handleSignInSubmit = (e) => {
     e.preventDefault();
-    try {
-      if (!email || !password) {
-        setErrors({ email: 'Email and password are required' });
-        return;
-      }
-      const res = await axios.post('http://localhost:5000/api/auth/signin', { email, password });
-      setMessage(`Welcome back! Token: ${res.data.token}`);
-      clearForm();
-    } catch (err) {
-      setMessage(err.response.data.msg);
+    if (!email || !password) {
+      setErrors({ email: 'Email and password are required' });
+      return;
     }
+    // Handle sign-in logic (not shown for simplicity in this example)
+    setMessage(`Sign-in logic placeholder`);
+    clearForm();
   };
 
-  const handleSignUpSubmit = async (e) => {
+  const handleSignUpSubmit = (e) => {
     e.preventDefault();
-    try {
-      if (!fullName || !email || !password || !confirmPassword) {
-        setErrors({ fullName: 'Full name is required', email: 'Email is required', password: 'Password is required', confirmPassword: 'Confirm password is required' });
-        return;
-      }
-      if (password !== confirmPassword) {
-        setErrors({ confirmPassword: 'Passwords do not match' });
-        return;
-      }
-      const res = await axios.post('http://localhost:5000/api/auth/signup', { fullName, email, password, confirmPassword });
-      setMessage(`Account created! Token: ${res.data.token}`);
-      clearForm();
-    } catch (err) {
-      setMessage(err.response.data.msg);
+    if (!fullName || !email || !password || !confirmPassword) {
+      setErrors({
+        fullName: 'Full name is required',
+        email: 'Email is required',
+        password: 'Password is required',
+        confirmPassword: 'Confirm password is required'
+      });
+      return;
     }
+    if (password.length < 8) {
+      setErrors({ password: 'Password must be at least 8 characters long' });
+      return;
+    }
+    if (password !== confirmPassword) {
+      setErrors({ confirmPassword: 'Passwords do not match' });
+      return;
+    }
+    // Handle sign-up logic (not shown for simplicity in this example)
+    setMessage(`Sign-up logic placeholder`);
+    clearForm();
   };
 
   const handleSignUpClick = () => {
